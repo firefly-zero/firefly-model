@@ -42,25 +42,25 @@ module pcb() {
     cube([WESP, WESP, TESP + .1]);
   // button S
   translate([139.39, 23.77, T - .1])
-    button();
+    pcb_button();
   // button N
   translate([139.39, 42.55, T - .1])
-    button();
+    pcb_button();
   // button W
   translate([129.93, 33.25, T - .1])
-    button();
+    pcb_button();
   // button E
   translate([148.52, 33.25, T - .1])
-    button();
+    pcb_button();
   // button menu
   translate([131.23, 6.25, T - .1])
-    button();
+    pcb_button();
   // button reset
   translate([35.095, 52.384, T - .1])
-    button();
+    pcb_button();
 }
 
-module button() {
+module pcb_button() {
   color("gray")
     cube([WBTN, HBTN, TBTN + .1]);
   color("blue")

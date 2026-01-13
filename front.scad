@@ -18,7 +18,7 @@ HSCR = 49; // Height of the display's visible part.
 TBAT = 6; // Battery thickness.
 WBAT = WSCR; // Battery width.
 
-RPWR = 9 / 2; // Power button radius.
+RPWR = 9.1 / 2; // Power button radius.
 RSPK = RPWR; // Speaker radius.
 RRST = 1.2; // Reset button radius.
 
