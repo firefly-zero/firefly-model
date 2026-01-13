@@ -1,3 +1,5 @@
+use <display.scad>
+
 W = 167; // Case width.
 H = 61; // Case height.
 T = 12; // Case thickness without battery.
@@ -5,7 +7,7 @@ RT = 23.5; // Top corners radius.
 RB = 4.5; // Botton corners radius.
 WALLS = 1; // Thickness of the case walls.
 
-RPAD = 35 / 2; // Touchpad radius.
+RPAD = 35.45 / 2; // Touchpad radius.
 MPAD = 6; // Margin between pad & case edges.
 
 WSCR = 73; // Width of the display's visible part.
@@ -58,7 +60,41 @@ module front() {
       // power button hole
       translate([W - MPAD - RPAD * 2 + RPWR, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
         cylinder(h=WALLS + .2, r=RPWR);
+      // LEDs bottom hole
+      insert_size = (H - HSCR) / 2;
+      translate([(W - WSCR) / 2, -.1, T - insert_size - .1])
+        cube([WSCR, insert_size + .2, insert_size + .2]);
+      // LEDs top hole
+      translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
+        cube([WSCR, insert_size + .2, insert_size + .2]);
     }
+
+  // corners holding the display
+  color("blue") {
+    translate([38.1, 2.1, 7.5])
+      display_corner();
+    translate([38.1, H - 2.1, 7.5])
+      mirror([0, 1, 0])
+        display_corner();
+    translate([W - 38.1 - 4.7, 2.1, 7.5])
+      mirror([1, 0, 0])
+        display_corner();
+    translate([W - 38.1 - 4.7, H - 2.1, 7.5])
+      mirror([1, 1, 0])
+        display_corner();
+  }
+}
+
+module display_corner() {
+  difference() {
+    cube([3, 3, 2.6 + 1]);
+    translate([1, 1, -1])
+      cube([3, 3, 10]);
+  }
 }
 
 front();
+
+// translate([81 + 47 - 5, (H - 54.6) / 2, T - 2.6 - WALLS])
+//   mirror([1, 0, 0])
+//     display();
