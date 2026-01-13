@@ -15,29 +15,55 @@ RT = 23.5 - WALL; // Radius of the top corners.
 RSCREW = 2 / 2; // Radius of the screw holes.
 MBSCREW = 6.5; // Margin of the bottom screw holes.
 MTSCREW = 12.5; // Margin of the bottom screw holes.
+HCOL = 4.4;
 
 WMID = W - (WFLAT + WBEND) * 2; // Width of the middle panel.
 
 module back() {
   color("#b13e53")
-    difference() {
-      back_panel_surface();
-      // etch the logo
-      translate([(W - WLOGO) / 2, (H - HLOGO) / 2, TBEND + 1 - TLOGO])
-        linear_extrude(1)
-          import(file="logo.svg", layer="plate");
-      // bottom-left screw hole
-      translate([MBSCREW, MBSCREW, 0])
-        screw_hole();
-      // bottom-right screw hole
-      translate([W - MBSCREW, MBSCREW, 0])
-        screw_hole();
-      translate([MTSCREW, H - MTSCREW, 0])
-        screw_hole();
-      translate([W - MTSCREW, H - MTSCREW, 0])
-        screw_hole();
+    union() {
+      difference() {
+        back_panel_surface();
+        // etch the logo
+        translate([(W - WLOGO) / 2, (H - HLOGO) / 2, TBEND + 1 - TLOGO])
+          linear_extrude(1)
+            import(file="logo.svg", layer="plate");
+        back_screw_holes();
+      }
+      back_columns();
     }
 }
+
+module back_screw_holes() {
+  // bottom-left screw hole
+  translate([MBSCREW, MBSCREW, 0])
+    screw_hole();
+  // bottom-right screw hole
+  translate([W - MBSCREW, MBSCREW, 0])
+    screw_hole();
+  // top-left screw hole
+  translate([MTSCREW, H - MTSCREW, 0])
+    screw_hole();
+  // top-right screw hole
+  translate([W - MTSCREW, H - MTSCREW, 0])
+    screw_hole();
+}
+
+module back_columns() {
+  // bottom-left screw column
+  translate([MBSCREW, MBSCREW, 0])
+    screw_column();
+  // bottom-right screw column
+  translate([W - MBSCREW, MBSCREW, 0])
+    screw_column();
+  // top-left screw column
+  translate([MTSCREW, H - MTSCREW, 0])
+    screw_column();
+  // top-right screw column
+  translate([W - MTSCREW, H - MTSCREW, 0])
+    screw_column();
+}
+
 module back_panel_surface() {
   union() {
     translate([WBEND + WFLAT, H, 0])
@@ -82,6 +108,15 @@ module screw_hole() {
   depth = .3;
   translate([0, 0, WALL - depth + .001])
     cylinder(h=depth, r1=RSCREW, r2=RSCREW + depth * 2);
+}
+
+module screw_column() {
+  translate([0, 0, -HCOL])
+    difference() {
+      cylinder(h=HCOL, r=RSCREW + WALL);
+      translate([0, 0, -.1])
+        cylinder(h=HCOL + .2, r=RSCREW);
+    }
 }
 
 back();
