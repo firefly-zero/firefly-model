@@ -32,29 +32,36 @@ module pcb() {
       translate([5.35, 27.9, -.1])
         cube([7.2, 13.8, 3]);
     }
-  color("gray") {
-    // ESP 1
-    translate([74.6, 11.6, -TESP])
-      cube([WESP, WESP, TESP + .1]);
-    // ESP 2
-    translate([74.6, 33.6, -TESP])
-      cube([WESP, WESP, TESP + .1]);
-    // button S
-    translate([138.7, 23.5, T - .1])
-      cube([WBTN, HBTN, TBTN + .1]);
-    // button N
-    translate([138.7, 42.6, T - .1])
-      cube([WBTN, HBTN, TBTN + .1]);
-    // button W
-    translate([129.0, 33.4, T - .1])
-      cube([WBTN, HBTN, TBTN + .1]);
-    // button E
-    translate([146.9, 33.4, T - .1])
-      cube([WBTN, HBTN, TBTN + .1]);
-    // button menu
-    translate([130.1, 5.9, T - .1])
-      cube([WBTN, HBTN, TBTN + .1]);
-  }
+  // ESP 1
+  translate([74.6, 11.6, -TESP])
+    cube([WESP, WESP, TESP + .1]);
+  // ESP 2
+  translate([74.6, 33.6, -TESP])
+    cube([WESP, WESP, TESP + .1]);
+  // button S
+  translate([138.7, 23.5, T - .1])
+    button();
+  // button N
+  translate([138.7, 42.6, T - .1])
+    button();
+  // button W
+  translate([129.0, 33.4, T - .1])
+    button();
+  // button E
+  translate([146.9, 33.4, T - .1])
+    button();
+  // button menu
+  translate([130.1, 5.9, T - .1])
+    button();
+}
+
+module button() {
+  color("gray")
+    cube([WBTN, HBTN, TBTN + .1]);
+  color("blue")
+    translate([WBTN / 2, HBTN / 2, 0])
+      cylinder(h=6, r=1);
+  ;
 }
 
 pcb();
