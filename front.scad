@@ -22,6 +22,11 @@ RPWR = 9.1 / 2; // Power button radius.
 RSPK = RPWR; // Speaker radius.
 RRST = 1.2; // Reset button radius.
 
+HCOL = 2.9; // Height of the screw column.
+RCOL = 2 / 2; // Radius of the screw holes in the column.
+MBCOL = 6.5; // Margin of the bottom screw holes.
+MTCOL = 12.5; // Margin of the bottom screw holes.
+
 module outline(margin = 0) {
   hull() {
     // top-left corner
@@ -51,21 +56,39 @@ module front() {
       front_holes();
       fat_back_panel();
     }
+  color("blue")
+    front_supports();
+}
+
+module front_supports() {
+  front_columns();
+
+  translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
+    pad_support();
+  translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
+    pad_support();
 
   // corners holding the display
-  color("blue") {
-    translate([42.8, 1.9, 8.5])
+  translate([42.8, 1.9, 8.5])
+    display_corner();
+  translate([42.8, H - 2.3, 8.5])
+    mirror([0, 1, 0])
       display_corner();
-    translate([42.8, H - 2.3, 8.5])
-      mirror([0, 1, 0])
-        display_corner();
-    translate([W - 38, 1.9, 8.5])
-      mirror([1, 0, 0])
-        display_corner();
-    translate([W - 38, H - 2.3, 8.5])
-      mirror([1, 1, 0])
-        display_corner();
-  }
+  translate([W - 38, 1.9, 8.5])
+    mirror([1, 0, 0])
+      display_corner();
+  translate([W - 38, H - 2.3, 8.5])
+    mirror([1, 1, 0])
+      display_corner();
+}
+
+module pad_support() {
+  translate([0, 0, -1])
+    difference() {
+      cylinder(h=1, r=RPAD + 1);
+      translate([0, 0, -.1])
+        cylinder(h=1.2, r=RPAD - 1);
+    }
 }
 
 module front_holes() {
@@ -121,6 +144,35 @@ module fat_back_panel() {
           translate([0, 0, 4.5])
             back_panel_surface();
         }
+}
+
+module front_columns() {
+  // bottom-left screw column
+  translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
+    screw_column();
+  // bottom-right screw column
+  translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
+    screw_column();
+  // top-left screw column
+  translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
+    translate([0, 0, HCOL - WALLS])
+      cylinder(h=WALLS, r=RCOL + WALLS + 1);
+    screw_column();
+  }
+  // top-right screw column
+  translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
+    translate([0, 0, HCOL - WALLS])
+      cylinder(h=WALLS, r=RCOL + WALLS + 1);
+    screw_column();
+  }
+}
+
+module screw_column() {
+  difference() {
+    cylinder(h=HCOL, r=RCOL + WALLS);
+    translate([0, 0, -.1])
+      cylinder(h=HCOL + .2, r=RCOL);
+  }
 }
 
 front();
