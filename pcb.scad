@@ -12,8 +12,8 @@ WBTN = 4.1;
 HBTN = 4.3;
 TBTN = 3;
 
-MBHOLE = 4.5; // Margin of the bottom screw holes.
-MTHOLE = 12.5; // Margin of the bottom screw holes.
+MBHOLE = 4.5 - 1; // Margin of the bottom screw holes.
+MTHOLE = 12.5 - 1; // Margin of the bottom screw holes.
 
 WSCR = 73; // Width of the display's visible part.
 HSCR = 49; // Height of the display's visible part.
