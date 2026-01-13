@@ -13,7 +13,7 @@ TLOGO = 0.4; // How deep the logo should be etched.
 RB = 4.5 - WALL; // Radius of the bottom corners.
 RT = 23.5 - WALL; // Radius of the top corners.
 RSCREW = 2 / 2; // Radius of the screw holes.
-MBSCREW = 6.5; // Margin of the bottom screw holes.
+MBSCREW = 4.5; // Margin of the bottom screw holes.
 MTSCREW = 12.5; // Margin of the bottom screw holes.
 HCOL = 5.5;
 

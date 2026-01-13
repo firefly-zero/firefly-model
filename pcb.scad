@@ -12,6 +12,12 @@ WBTN = 4.1;
 HBTN = 4.3;
 TBTN = 3;
 
+MBHOLE = 4.5; // Margin of the bottom screw holes.
+MTHOLE = 12.5; // Margin of the bottom screw holes.
+
+WSCR = 73; // Width of the display's visible part.
+HSCR = 49; // Height of the display's visible part.
+
 module pcb() {
   color("green")
     difference() {
@@ -29,10 +35,24 @@ module pcb() {
         translate([W - RB, RB, 0])
           cylinder(h=T, r=RB);
       }
+      // screen cutout
       translate([111.0, 2.8, -.1])
         cube([9.4, 41.9, 3]);
+      // pad cutout
       translate([5.35, 27.9, -.1])
         cube([7.2, 13.8, 3]);
+      translate([MBHOLE, MBHOLE, -.1])
+        cylinder(h=4, r=1);
+      translate([W - MBHOLE, MBHOLE, -.1])
+        cylinder(h=4, r=1);
+      translate([MTHOLE, H - MTHOLE, -.1])
+        cylinder(h=4, r=1);
+      translate([W - MTHOLE, H - MTHOLE, -.1])
+        cylinder(h=4, r=1);
+      translate([(W - WSCR) / 2 - 1, 0, -.1])
+        cube([WSCR + 2, 1, 4]);
+      translate([(W - WSCR) / 2 - 1, H - 1, -.1])
+        cube([WSCR + 2, 1, 4]);
     }
   // ESP 1
   translate([74.6, 11.6, -TESP])
@@ -54,9 +74,6 @@ module pcb() {
     pcb_button();
   // button menu
   translate([131.23, 6.25, T - .1])
-    pcb_button();
-  // button reset
-  translate([35.095, 52.384, T - .1])
     pcb_button();
 }
 

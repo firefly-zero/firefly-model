@@ -24,8 +24,8 @@ RRST = 1.2; // Reset button radius.
 
 HCOL = 2.9; // Height of the screw column.
 RCOL = 2 / 2; // Radius of the screw holes in the column.
-MBCOL = 6.5; // Margin of the bottom screw holes.
-MTCOL = 12.5; // Margin of the bottom screw holes.
+MBCOL = 4.5 + 1; // Margin of the bottom screw holes.
+MTCOL = 12.5 + 1; // Margin of the bottom screw holes.
 
 module outline(margin = 0) {
   hull() {

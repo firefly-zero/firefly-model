@@ -9,11 +9,11 @@ use <speaker.scad>;
 use <button.scad>;
 use <translucy.scad>;
 
-front();
+// front();
 
-translate([166, 1, 1])
-  rotate(180, [0, 1, 0])
-    back();
+// translate([166, 1, 1])
+//   rotate(180, [0, 1, 0])
+//     back();
 
 translate([2, 2, 6.6])
   pcb();
