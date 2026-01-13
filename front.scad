@@ -1,5 +1,7 @@
 use <display.scad>
 
+$fs = 0.6;
+
 W = 167; // Case width.
 H = 61; // Case height.
 T = 12; // Case thickness without battery.
@@ -18,6 +20,7 @@ WBAT = WSCR; // Battery width.
 
 RPWR = 9 / 2; // Power button radius.
 RSPK = RPWR; // Speaker radius.
+RRST = 1.2; // Reset button radius.
 
 module outline(margin = 0) {
   hull() {
@@ -60,6 +63,9 @@ module front() {
       // power button hole
       translate([W - MPAD - RPAD * 2 + RPWR + 5, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
         cylinder(h=WALLS + .2, r=RPWR);
+      // reset button hole
+      translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
+        cylinder(h=WALLS + .2, r=RRST);
       // LEDs bottom hole
       insert_size = (H - HSCR) / 2;
       translate([(W - WSCR) / 2, -.1, T - insert_size - .1])

@@ -8,8 +8,8 @@ use <battery.scad>;
 
 front();
 
-translate([1, 1, 1])
-  mirror([0, 0, 1])
+translate([166, 1, 1])
+  rotate(180, [0, 1, 0])
     back();
 
 translate([2, 2, 6.6])
