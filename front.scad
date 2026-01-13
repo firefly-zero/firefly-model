@@ -23,16 +23,16 @@ module outline(margin = 0) {
   hull() {
     // top-left corner
     translate([RT + margin, H - RT - margin, 0])
-      cylinder(h=12, r=RT);
+      cylinder(h=T, r=RT);
     // top-right corner
     translate([W - RT - margin, H - RT - margin, 0])
-      cylinder(h=12, r=RT);
+      cylinder(h=T, r=RT);
     // bottom-left corner
     translate([RB + margin, RB + margin, 0])
-      cylinder(h=12, r=RB);
+      cylinder(h=T, r=RB);
     // bottom-right corner
     translate([W - RB - margin, RB + margin, 0])
-      cylinder(h=12, r=RB);
+      cylinder(h=T, r=RB);
     // battery
     translate([(W - WBAT) / 2, margin, -TBAT - margin])
       cube([WBAT, H - margin * 2, TBAT]);
