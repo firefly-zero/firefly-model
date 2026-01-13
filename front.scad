@@ -54,15 +54,15 @@ module front() {
 
   // corners holding the display
   color("blue") {
-    translate([43.6, 2.1, 8.5])
+    translate([42.8, 1.9, 8.5])
       display_corner();
-    translate([43.6, H - 2.1, 8.5])
+    translate([42.8, H - 2.3, 8.5])
       mirror([0, 1, 0])
         display_corner();
-    translate([W - 36.8, 2.1, 8.5])
+    translate([W - 38, 1.9, 8.5])
       mirror([1, 0, 0])
         display_corner();
-    translate([W - 36.8, H - 2.1, 8.5])
+    translate([W - 38, H - 2.3, 8.5])
       mirror([1, 1, 0])
         display_corner();
   }
