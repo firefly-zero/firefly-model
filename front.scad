@@ -58,7 +58,7 @@ module front() {
       translate([MPAD + RPAD * 2 - RSPK, (H - HSCR) / 2 + RSPK, T - WALLS - .1])
         cylinder(h=WALLS + .2, r=RSPK);
       // power button hole
-      translate([W - MPAD - RPAD * 2 + RPWR, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
+      translate([W - MPAD - RPAD * 2 + RPWR + 5, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
         cylinder(h=WALLS + .2, r=RPWR);
       // LEDs bottom hole
       insert_size = (H - HSCR) / 2;
@@ -71,15 +71,15 @@ module front() {
 
   // corners holding the display
   color("blue") {
-    translate([38.1, 2.1, 7.5])
+    translate([43.6, 2.1, 8.5])
       display_corner();
-    translate([38.1, H - 2.1, 7.5])
+    translate([43.6, H - 2.1, 8.5])
       mirror([0, 1, 0])
         display_corner();
-    translate([W - 38.1 - 4.7, 2.1, 7.5])
+    translate([W - 36.8, 2.1, 8.5])
       mirror([1, 0, 0])
         display_corner();
-    translate([W - 38.1 - 4.7, H - 2.1, 7.5])
+    translate([W - 36.8, H - 2.1, 8.5])
       mirror([1, 1, 0])
         display_corner();
   }
@@ -87,7 +87,7 @@ module front() {
 
 module display_corner() {
   difference() {
-    cube([3, 3, 2.6 + 1]);
+    cube([3, 3, 2.7]);
     translate([1, 1, -1])
       cube([3, 3, 10]);
   }

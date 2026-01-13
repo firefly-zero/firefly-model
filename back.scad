@@ -15,7 +15,7 @@ RT = 23.5 - WALL; // Radius of the top corners.
 RSCREW = 2 / 2; // Radius of the screw holes.
 MBSCREW = 6.5; // Margin of the bottom screw holes.
 MTSCREW = 12.5; // Margin of the bottom screw holes.
-HCOL = 4.4;
+HCOL = 5.5;
 
 WMID = W - (WFLAT + WBEND) * 2; // Width of the middle panel.
 
