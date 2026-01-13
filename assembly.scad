@@ -7,6 +7,7 @@ use <display.scad>;
 use <battery.scad>;
 use <speaker.scad>;
 use <button.scad>;
+use <translucy.scad>;
 
 front();
 
@@ -57,3 +58,10 @@ translate([44, 3, 8.5])
 
 translate([52.5, 3, -0.7])
   battery();
+
+translate([47, 0, 6])
+  translucy();
+
+translate([47, 61, 6])
+  mirror([0, 1, 0])
+    translucy();
