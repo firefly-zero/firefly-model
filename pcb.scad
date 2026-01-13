@@ -39,19 +39,22 @@ module pcb() {
   translate([74.6, 33.6, -TESP])
     cube([WESP, WESP, TESP + .1]);
   // button S
-  translate([138.7, 23.5, T - .1])
+  translate([139.39, 23.77, T - .1])
     button();
   // button N
-  translate([138.7, 42.6, T - .1])
+  translate([139.39, 42.55, T - .1])
     button();
   // button W
-  translate([129.0, 33.4, T - .1])
+  translate([129.93, 33.25, T - .1])
     button();
   // button E
-  translate([146.9, 33.4, T - .1])
+  translate([148.52, 33.25, T - .1])
     button();
   // button menu
-  translate([130.1, 5.9, T - .1])
+  translate([131.23, 6.25, T - .1])
+    button();
+  // button reset
+  translate([35.095, 52.384, T - .1])
     button();
 }
 
