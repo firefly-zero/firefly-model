@@ -48,6 +48,9 @@ translate([143.2, 46.5, 11]) {
   button();
   power_button();
 }
+// reset
+translate([135.1, 10.5, 11])
+  power_button();
 
 translate([45, 3, 8.5])
   display();
