@@ -1,4 +1,4 @@
-use <display.scad>
+use <back.scad>
 
 $fs = 0.6;
 
@@ -48,31 +48,8 @@ module front() {
       outline();
       translate([0, 0, -1])
         outline(margin=1);
-      // touchpad hole
-      translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS - .1])
-        cylinder(h=WALLS + .2, r=RPAD);
-      // buttons group hole
-      translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
-        cylinder(h=WALLS + .2, r=RPAD);
-      // screen hole
-      translate([(W - WSCR) / 2, (H - HSCR) / 2, T - WALLS - .1])
-        cube([WSCR, HSCR, WALLS + .2]);
-      // speaker hole
-      translate([MPAD + RPAD * 2 - RSPK, (H - HSCR) / 2 + RSPK, T - WALLS - .1])
-        cylinder(h=WALLS + .2, r=RSPK);
-      // power button hole
-      translate([W - MPAD - RPAD * 2 + RPWR + 5, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
-        cylinder(h=WALLS + .2, r=RPWR);
-      // reset button hole
-      translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
-        cylinder(h=WALLS + .2, r=RRST);
-      // LEDs bottom hole
-      insert_size = (H - HSCR) / 2;
-      translate([(W - WSCR) / 2, -.1, T - insert_size - .1])
-        cube([WSCR, insert_size + .2, insert_size + .2]);
-      // LEDs top hole
-      translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
-        cube([WSCR, insert_size + .2, insert_size + .2]);
+      front_holes();
+      fat_back_panel();
     }
 
   // corners holding the display
@@ -91,6 +68,34 @@ module front() {
   }
 }
 
+module front_holes() {
+  // touchpad hole
+  translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS - .1])
+    cylinder(h=WALLS + .2, r=RPAD);
+  // buttons group hole
+  translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
+    cylinder(h=WALLS + .2, r=RPAD);
+  // screen hole
+  translate([(W - WSCR) / 2, (H - HSCR) / 2, T - WALLS - .1])
+    cube([WSCR, HSCR, WALLS + .2]);
+  // speaker hole
+  translate([MPAD + RPAD * 2 - RSPK, (H - HSCR) / 2 + RSPK, T - WALLS - .1])
+    cylinder(h=WALLS + .2, r=RSPK);
+  // power button hole
+  translate([W - MPAD - RPAD * 2 + RPWR + 5, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
+    cylinder(h=WALLS + .2, r=RPWR);
+  // reset button hole
+  translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
+    cylinder(h=WALLS + .2, r=RRST);
+  // LEDs bottom hole
+  insert_size = (H - HSCR) / 2;
+  translate([(W - WSCR) / 2, -.1, T - insert_size - .1])
+    cube([WSCR, insert_size + .2, insert_size + .2]);
+  // LEDs top hole
+  translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
+    cube([WSCR, insert_size + .2, insert_size + .2]);
+}
+
 module display_corner() {
   difference() {
     cube([3, 3, 2.7]);
@@ -99,8 +104,23 @@ module display_corner() {
   }
 }
 
-front();
+module fat_back_panel() {
+  translate([166, -2, 0])
+    rotate(180, [0, 1, 0])
+      scale([1, 1.2, 1])
+        union() {
+          back_panel_surface();
+          translate([0, 0, 0.9])
+            back_panel_surface();
+          translate([0, 0, 1.8])
+            back_panel_surface();
+          translate([0, 0, 2.7])
+            back_panel_surface();
+          translate([0, 0, 3.6])
+            back_panel_surface();
+          translate([0, 0, 4.5])
+            back_panel_surface();
+        }
+}
 
-// translate([81 + 47 - 5, (H - 54.6) / 2, T - 2.6 - WALLS])
-//   mirror([1, 0, 0])
-//     display();
+front();
