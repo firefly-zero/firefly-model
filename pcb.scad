@@ -90,8 +90,13 @@ module pcb_components() {
   translate([0, 19.03 + 8.34, .00001])
     rotate(270)
       pcb_usb_port();
+  // SD card reader
   translate([137.57, 0, 0])
     pcb_sd_card();
+  // reset button
+  color("blue")
+    translate([19.26, -1.28, -2.54])
+      cube([2.54, 10.08, 2.54]);
 }
 
 module pcb_usb_port() {

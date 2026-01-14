@@ -55,7 +55,7 @@ module back_columns() {
     screw_column();
   // bottom-right screw column
   translate([W - MBSCREW, MBSCREW, 0])
-    screw_column();
+    screw_column(shorten_by=2.65);
   // top-left screw column
   translate([MTSCREW, H - MTSCREW, 0])
     screw_column();
@@ -110,12 +110,12 @@ module screw_hole() {
     cylinder(h=depth, r1=RSCREW, r2=RSCREW + depth * 2);
 }
 
-module screw_column() {
-  translate([0, 0, -HCOL])
+module screw_column(shorten_by = 0) {
+  translate([0, 0, -HCOL + shorten_by])
     difference() {
-      cylinder(h=HCOL, r=RSCREW + WALL);
+      cylinder(h=HCOL - shorten_by, r=RSCREW + WALL);
       translate([0, 0, -.1])
-        cylinder(h=HCOL + .2, r=RSCREW);
+        cylinder(h=HCOL - shorten_by + .2, r=RSCREW);
     }
 }
 

@@ -117,6 +117,18 @@ module front_holes() {
   // LEDs top hole
   translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
     cube([WSCR, insert_size + .2, insert_size + .2]);
+
+  translate([7.5, WALLS + .1, 5.5])
+    front_usb();
+}
+
+module front_usb() {
+  rotate(90, [1, 0, 0])
+    hull() {
+      cylinder(h=2, r=1.5);
+      translate([9 - 2 * 1.5, 0, 0])
+        cylinder(h=2, r=1.5);
+    }
 }
 
 module display_corner() {
