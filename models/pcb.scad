@@ -42,11 +42,11 @@ module pcb() {
 
 module pcb_holes() {
   // screen cutout
-  translate([111.0, 2.8, -.1])
-    cube([9.4, 41.9, 3]);
+  translate([122.5, 11.5, -.1])
+    cube([7.4, 36.8, 3]);
   // pad cutout
-  translate([5.35, 27.9, -.1])
-    cube([7.2, 13.8, 3]);
+  translate([6.8, 29, -.1])
+    cube([6.2, 13.2, 3]);
   translate([MBHOLE, MBHOLE, -.1])
     cylinder(h=4, r=1);
   translate([W - MBHOLE, MBHOLE, -.1])
@@ -84,10 +84,10 @@ module pcb_components() {
   translate([131.23, 6.25, T - .1])
     pcb_button();
   // usb port
-  translate([3.79, 0, .00001])
+  translate([6.79, 0, -.3])
     pcb_usb_port();
   // extra usb port
-  translate([0, 19.03 + 8.34, .00001])
+  translate([0, 26.6, -.3])
     rotate(270)
       pcb_usb_port();
   // SD card reader
@@ -139,3 +139,7 @@ module pcb_button() {
 }
 
 pcb();
+
+translate([-68.61 - 2, 127.4 - 2, 0])
+  color("purple")
+    import("./pcb.stl");
