@@ -118,7 +118,7 @@ module front_holes() {
   translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
     cube([WSCR, insert_size + .2, insert_size + .2]);
 
-  translate([7.5, WALLS + .1, 5.5])
+  translate([9.9, WALLS + .1, 4.9])
     front_usb();
 }
 
