@@ -35,25 +35,33 @@ module pcb() {
         translate([W - RB, RB, 0])
           cylinder(h=T, r=RB);
       }
-      // screen cutout
-      translate([111.0, 2.8, -.1])
-        cube([9.4, 41.9, 3]);
-      // pad cutout
-      translate([5.35, 27.9, -.1])
-        cube([7.2, 13.8, 3]);
-      translate([MBHOLE, MBHOLE, -.1])
-        cylinder(h=4, r=1);
-      translate([W - MBHOLE, MBHOLE, -.1])
-        cylinder(h=4, r=1);
-      translate([MTHOLE, H - MTHOLE, -.1])
-        cylinder(h=4, r=1);
-      translate([W - MTHOLE, H - MTHOLE, -.1])
-        cylinder(h=4, r=1);
-      translate([(W - WSCR) / 2 - 1, 0, -.1])
-        cube([WSCR + 2, 1, 4]);
-      translate([(W - WSCR) / 2 - 1, H - 1, -.1])
-        cube([WSCR + 2, 1, 4]);
+      pcb_holes();
     }
+  pcb_components();
+}
+
+module pcb_holes() {
+  // screen cutout
+  translate([111.0, 2.8, -.1])
+    cube([9.4, 41.9, 3]);
+  // pad cutout
+  translate([5.35, 27.9, -.1])
+    cube([7.2, 13.8, 3]);
+  translate([MBHOLE, MBHOLE, -.1])
+    cylinder(h=4, r=1);
+  translate([W - MBHOLE, MBHOLE, -.1])
+    cylinder(h=4, r=1);
+  translate([MTHOLE, H - MTHOLE, -.1])
+    cylinder(h=4, r=1);
+  translate([W - MTHOLE, H - MTHOLE, -.1])
+    cylinder(h=4, r=1);
+  translate([(W - WSCR) / 2 - 1, 0, -.1])
+    cube([WSCR + 2, 1, 4]);
+  translate([(W - WSCR) / 2 - 1, H - 1, -.1])
+    cube([WSCR + 2, 1, 4]);
+}
+
+module pcb_components() {
   // ESP 1
   translate([74.6, 11.6, -TESP])
     cube([WESP, WESP, TESP + .1]);
@@ -75,6 +83,45 @@ module pcb() {
   // button menu
   translate([131.23, 6.25, T - .1])
     pcb_button();
+  // usb port
+  translate([3.79, 0, .00001])
+    pcb_usb_port();
+  // extra usb port
+  translate([0, 19.03 + 8.34, .00001])
+    rotate(270)
+      pcb_usb_port();
+  translate([137.57, 0, 0])
+    pcb_sd_card();
+}
+
+module pcb_usb_port() {
+  TUSB = 2.56;
+  color("white")
+    translate([TUSB / 2, 6.20, -TUSB / 2])
+      rotate(90, [1, 0, 0])
+        difference() {
+          hull() {
+            cylinder(h=6.20, r=TUSB / 2);
+            translate([8.34 - TUSB, 0, 0])
+              cylinder(h=6.20, r=TUSB / 2);
+          }
+          translate([0, 0, .1])
+            hull() {
+              cylinder(h=6.20, r=TUSB / 2 - .2);
+              translate([8.34 - TUSB, 0, 0])
+                cylinder(h=6.20, r=TUSB / 2 - .2);
+            }
+        }
+}
+
+module pcb_sd_card() {
+  color("white")
+    translate([0, 0, -1.20])
+      difference() {
+        cube([15.49, 13.20, 1.20]);
+        translate([.49 / 2, -.1, .2 / 2])
+          cube([15, 11, 1]);
+      }
 }
 
 module pcb_button() {
