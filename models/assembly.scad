@@ -1,14 +1,14 @@
 use <back.scad>;
-use <front.scad>;
-use <touchpad.scad>;
-use <button-holder.scad>;
-use <pcb.scad>;
-use <display.scad>;
 use <battery.scad>;
-use <speaker.scad>;
+use <button-holder.scad>;
 use <button.scad>;
-use <translucy.scad>;
+use <display.scad>;
+use <front.scad>;
+use <pcb.scad>;
 use <simplified-button.scad>;
+use <speaker.scad>;
+use <touchpad.scad>;
+use <translucy.scad>;
 
 front();
 

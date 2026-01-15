@@ -193,10 +193,20 @@ module front_columns() {
 
 module screw_column() {
   difference() {
-    cylinder(h=HCOL, r=RCOL + WALLS);
+    cylinder(h=HCOL - 2, r=RCOL + WALLS);
     translate([0, 0, -.1])
       cylinder(h=HCOL + .2, r=RCOL);
   }
+
+  RNUT = 1;
+  translate([0, 0, HCOL - 2.7])
+    difference() {
+      cylinder(h=2.7 + .00001, r=RCOL + WALLS + RNUT);
+      translate([-5, 0, -1])
+        cube([10, (RCOL + WALLS + RNUT) * 2, 4]);
+      translate([0, 0, -.1])
+        cylinder(h=10, r=RCOL + RNUT);
+    }
 }
 
 front();
