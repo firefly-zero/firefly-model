@@ -1,3 +1,5 @@
+use <logo.scad>;
+
 $fs = .2;
 
 WALL = 1; // Wall thickness.
@@ -26,8 +28,7 @@ module back() {
         back_panel_surface();
         // etch the logo
         translate([(W - WLOGO) / 2, (H - HLOGO) / 2, TBEND + 1 - TLOGO])
-          linear_extrude(1)
-            import(file="logo.svg", layer="plate");
+          logo();
         back_screw_holes();
       }
       back_lucy_locks();

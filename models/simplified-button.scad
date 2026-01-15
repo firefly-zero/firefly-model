@@ -15,7 +15,7 @@ module simplified_button() {
           cylinder(h=HCOL, r=RCOL);
       }
       translate([0, 0, H - RSPH])
-        sphere(r=RSPH);
+        sphere(r=RSPH, $fa=3);
     }
 }
 

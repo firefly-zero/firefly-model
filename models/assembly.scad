@@ -34,7 +34,7 @@ translate([143.2, 37.2, 12])
   mirror([0, 0, 1])
     button_holder();
 
-color("gray") {
+color("#333c57") {
   // W
   // translate([134, 37.2, 11]) {
   //   button();
