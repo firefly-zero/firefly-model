@@ -140,6 +140,6 @@ module pcb_button() {
 
 pcb();
 
-translate([-68.61 - 2, 127.4 - 2, 0])
-  color("purple")
-    import("./pcb.stl");
+// translate([-68.61 - 2, 127.4 - 2, 0])
+//   color("purple")
+//     import("./pcb.stl");
