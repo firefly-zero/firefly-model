@@ -38,11 +38,13 @@ module back() {
 
 module back_lucy_locks() {
   WSCR = 73;
-  translate([(W - WSCR) / 2, 0, -5.9])
-    back_lucy_lock();
-  translate([(W + WSCR) / 2, 0, -5.9])
-    mirror([1, 0, 0])
+  translate([(W - WSCR) / 2, 1, -5.9])
+    mirror([0, 1, 0])
       back_lucy_lock();
+  translate([(W + WSCR) / 2, 1, -5.9])
+    mirror([0, 1, 0])
+      mirror([1, 0, 0])
+        back_lucy_lock();
   translate([0, H - 1, 0]) {
     translate([(W - WSCR) / 2, 0, -5.9])
       back_lucy_lock();
@@ -53,14 +55,14 @@ module back_lucy_locks() {
 }
 
 module back_lucy_lock() {
-  cube([2.9, 1, 10]);
+  cube([15.9, 1, 10]);
   translate([0, 0, -4])
     cube([1, 1, 9]);
   hull() {
-    translate([0, 0, 7])
-      cube([2.9, 1, 5]);
-    translate([3, 0, 12])
-      cube([1, 1, .1]);
+    translate([0, -2, 1.5])
+      cube([15.9, 3, 10.5]);
+    translate([6, -2, 12])
+      cube([15, 3, .1]);
   }
 }
 

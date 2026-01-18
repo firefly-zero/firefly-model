@@ -73,7 +73,7 @@ translate([135.1, 10.5, 11 + .5])
 translate([44, 3, 8.5])
   display();
 
-translate([52.5, 3, -0.7])
+translate([52.5, 10, -0.7])
   battery();
 
 translate([47, 0, 6])
