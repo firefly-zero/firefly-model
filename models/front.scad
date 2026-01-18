@@ -1,19 +1,20 @@
 use <back.scad>
+include <params.scad>
 
 $fs = 0.6;
 
-W = 167; // Case width.
-H = 61; // Case height.
+W = CASE_W; // Case width.
+H = CASE_H; // Case height.
 T = 12; // Case thickness without battery.
 RT = 23.5; // Top corners radius.
 RB = 4.5; // Botton corners radius.
 WALLS = 1; // Thickness of the case walls.
 
-RPAD = 35.45 / 2; // Touchpad radius.
-MPAD = 6; // Margin between pad & case edges.
+RPAD = TOUCHPAD_R + TOUCHPAD_A; // Touchpad radius.
+MPAD = TOUCHPAD_ML; // Margin between pad & case edges.
 
-WSCR = 73; // Width of the display's visible part.
-HSCR = 49; // Height of the display's visible part.
+WSCR = SCREEN_W; // Width of the display's visible part.
+HSCR = SCREEN_H; // Height of the display's visible part.
 
 TBAT = 6; // Battery thickness.
 WBAT = WSCR; // Battery width.
