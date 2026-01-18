@@ -62,7 +62,7 @@ module back_lucy_lock() {
     translate([0, -2, 1.5])
       cube([15.9, 3, 10.5]);
     translate([6, -2, 12])
-      cube([15, 3, .1]);
+      cube([40, 3, .1]);
   }
 }
 
@@ -98,12 +98,12 @@ module back_columns() {
 
 module back_panel_surface() {
   union() {
-    translate([WBEND + WFLAT, H, 0])
+    translate([WBEND + WFLAT, H, -1])
       mirror([1, 0, 0])
         rotate(90, [1, 0, 0])
           linear_extrude(H)
             import(file="bend.svg", layer="plate");
-    translate([W - WBEND - WFLAT, H, 0])
+    translate([W - WBEND - WFLAT, H, -1])
       rotate(90, [1, 0, 0])
         linear_extrude(H)
           import(file="bend.svg", layer="plate");
@@ -120,17 +120,18 @@ module back_panel_surface() {
 }
 
 module back_side_panel() {
+  EXTRA_T = 1;
   hull() {
-    translate([RB, RB, 0])
-      cylinder(h=WALL, r=RB);
-    translate([RT, H - RT, 0])
+    translate([RB, RB, -EXTRA_T])
+      cylinder(h=WALL + EXTRA_T, r=RB);
+    translate([RT, H - RT, -EXTRA_T])
       difference() {
-        cylinder(h=WALL, r=RT);
+        cylinder(h=WALL + EXTRA_T, r=RT);
         translate([0, -RT, -.1])
-          cube([RT + 1, RT * 2, WALL + .2]);
+          cube([RT + 1, RT * 2, 6]);
       }
-    translate([WFLAT, 0, 0])
-      cube([1, H, WALL]);
+    translate([WFLAT, 0, -EXTRA_T])
+      cube([1, H, WALL + EXTRA_T]);
   }
 }
 
