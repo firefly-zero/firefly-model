@@ -14,7 +14,7 @@ HLOGO = 8.666;
 TLOGO = 0.4; // How deep the logo should be etched.
 RB = 4.5 - WALL; // Radius of the bottom corners.
 RT = 23.5 - WALL; // Radius of the top corners.
-RSCREW = 2 / 2; // Radius of the screw holes.
+RSCREW = 3 / 2; // Radius of the screw holes.
 MBSCREW = 4.5; // Margin of the bottom screw holes.
 MTSCREW = 12.5; // Margin of the bottom screw holes.
 HCOL = 5.5;
@@ -136,8 +136,8 @@ module back_side_panel() {
 }
 
 module screw_hole() {
-  translate([0, 0, -.1])
-    cylinder(h=WALL, r=RSCREW);
+  translate([0, 0, -5])
+    cylinder(h=10, r=RSCREW);
   depth = .3;
   translate([0, 0, WALL - depth + .001])
     cylinder(h=depth, r1=RSCREW, r2=RSCREW + depth * 2);
@@ -146,7 +146,7 @@ module screw_hole() {
 module screw_column() {
   translate([0, 0, -HCOL])
     difference() {
-      cylinder(h=HCOL, r=RSCREW + WALL);
+      cylinder(h=HCOL, r=RSCREW + 1.5);
       translate([0, 0, -.1])
         cylinder(h=HCOL + .2, r=RSCREW);
     }
