@@ -88,7 +88,7 @@ module pad_support() {
     difference() {
       cylinder(h=1, r=RPAD + 1);
       translate([0, 0, -.1])
-        cylinder(h=1.2, r=RPAD - 1);
+        cylinder(h=1.2, r=RPAD - 1.5);
     }
 }
 
