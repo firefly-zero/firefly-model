@@ -57,8 +57,16 @@ module front() {
       front_holes();
       fat_back_panel();
     }
+
   color("blue")
     front_supports();
+
+  color("green") {
+    extra_support();
+    translate([W, 0, 0])
+      mirror([1, 0, 0])
+        extra_support();
+  }
 }
 
 module front_supports() {
@@ -83,6 +91,7 @@ module front_supports() {
       display_corner();
 }
 
+// The bedding for glue'ing in touchpad or buttons holder.
 module pad_support() {
   translate([0, 0, -1])
     difference() {
@@ -135,6 +144,7 @@ module front_holes() {
     cube([13, 2, 1.5]);
 }
 
+// A hole for a USB-C port.
 module front_usb() {
   rotate(90, [1, 0, 0])
     hull() {
@@ -144,11 +154,30 @@ module front_usb() {
     }
 }
 
+// A little straigh corner keeping the display
+// from moving to the sides.
 module display_corner() {
   difference() {
     cube([3, 3, 2.7]);
     translate([1, 1, -1])
       cube([3, 3, 10]);
+  }
+}
+
+// Additional reinforcement for the front panel
+// to make it less flimsical when 3D-printed
+// with not-so-sturdy plastic.
+module extra_support() {
+  width = 2;
+  translate([WALLS, RB, T - WALLS - 2.5])
+    cube([width, H - RB - RT, 2.5]);
+  translate([RB, WALLS, T - WALLS - 2.5])
+    cube([(W - WSCR) / 2 - RB - 10, width, 2.5]);
+  hull() {
+    translate([WALLS, 20, T - WALLS - 2.5])
+      cube([width, 10, 2.5]);
+    translate([20, WALLS, T - WALLS - 2.5])
+      cube([10, width, 2.5]);
   }
 }
 
@@ -192,6 +221,10 @@ module front_columns() {
   }
 }
 
+// A little column with a hollow shaft in the middle
+// for a screw or bolt. Has a space for a nut. at the bottom.
+// The height of the column control the distance between
+// the front panel and PCB.
 module screw_column() {
   difference() {
     cylinder(h=HCOL - 2, r=RCOL + WALLS);
