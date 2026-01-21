@@ -1,4 +1,3 @@
-use <back.scad>
 include <params.scad>
 
 $fs = 0.6;
@@ -55,7 +54,7 @@ module front() {
       translate([0, 0, -1])
         outline(margin=1);
       front_holes();
-      fat_back_panel();
+      back_panel_cut();
     }
 
   color("blue")
@@ -181,23 +180,24 @@ module extra_support() {
   }
 }
 
-module fat_back_panel() {
-  translate([166, -2, 0])
-    rotate(180, [0, 1, 0])
-      scale([1, 1.2, 1])
-        union() {
-          back_panel_surface();
-          translate([0, 0, 0.9])
-            back_panel_surface();
-          translate([0, 0, 1.8])
-            back_panel_surface();
-          translate([0, 0, 2.7])
-            back_panel_surface();
-          translate([0, 0, 3.6])
-            back_panel_surface();
-          translate([0, 0, 4.5])
-            back_panel_surface();
-        }
+module back_panel_cut() {
+  back_panel_half_cut();
+  translate([W, 0, 0])
+    mirror([1, 0, 0])
+      back_panel_half_cut();
+}
+
+module back_panel_half_cut() {
+  WBEND = 22.393;
+  WFLAT = 32; // Width of the flat surface on the side.
+  WMID = W - (WFLAT + WBEND) * 2; // Width of the middle panel.
+
+  translate([-1, -1, -10])
+    cube([WFLAT + 2, H + 2, 10]);
+  translate([WFLAT + .5, H + 1, -T - 5])
+    rotate(90, [1, 0, 0])
+      linear_extrude(H + 2)
+        import(file="bend-cut.svg", layer="plate");
 }
 
 module front_columns() {
