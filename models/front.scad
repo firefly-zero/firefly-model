@@ -70,15 +70,15 @@ module front_supports() {
     pad_support();
 
   // corners holding the display
-  translate([42.8, 1.9, 8.5])
+  translate([42.7, 1.9, 8.5])
     display_corner();
-  translate([42.8, H - 2.3, 8.5])
+  translate([42.7, H - 2.3, 8.5])
     mirror([0, 1, 0])
       display_corner();
-  translate([W - 38, 1.9, 8.5])
+  translate([W - 37.8, 1.9, 8.5])
     mirror([1, 0, 0])
       display_corner();
-  translate([W - 38, H - 2.3, 8.5])
+  translate([W - 37.8, H - 2.3, 8.5])
     mirror([1, 1, 0])
       display_corner();
 }
