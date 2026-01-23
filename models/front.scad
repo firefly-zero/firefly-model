@@ -27,20 +27,25 @@ RCOL = 2 / 2; // Radius of the screw holes in the column.
 MBCOL = 4.5 + 1; // Margin of the bottom screw holes.
 MTCOL = 12.5 + 1; // Margin of the bottom screw holes.
 
+// The box with rounded corners representing the whole device outline.
+//
+// Margin substracts N mm from all sides, which is used
+// to cut the hollow space in the case outline, turning it
+// from a brick into an ampty box.
 module outline(margin = 0) {
   hull() {
     // top-left corner
-    translate([RT + margin, H - RT - margin, 0])
-      cylinder(h=T, r=RT);
+    translate([RT, H - RT, 0])
+      cylinder(h=T, r=RT - margin);
     // top-right corner
-    translate([W - RT - margin, H - RT - margin, 0])
-      cylinder(h=T, r=RT);
+    translate([W - RT, H - RT, 0])
+      cylinder(h=T, r=RT - margin);
     // bottom-left corner
-    translate([RB + margin, RB + margin, 0])
-      cylinder(h=T, r=RB);
+    translate([RB, RB, 0])
+      cylinder(h=T, r=RB - margin);
     // bottom-right corner
-    translate([W - RB - margin, RB + margin, 0])
-      cylinder(h=T, r=RB);
+    translate([W - RB, RB, 0])
+      cylinder(h=T, r=RB - margin);
     // battery
     translate([(W - WBAT) / 2, margin, -TBAT - margin])
       cube([WBAT, H - margin * 2, TBAT]);
