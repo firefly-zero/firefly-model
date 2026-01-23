@@ -1,3 +1,5 @@
+set -e
+
 mkdir -p stl
 echo "back"
 openscad -o stl/back.stl                models/back.scad
@@ -13,6 +15,8 @@ echo "front"
 openscad -o stl/front.stl               models/front.scad
 echo "logo"
 openscad -o stl/logo.stl                models/logo.scad
+echo "lucy-locks"
+openscad -o stl/lucy-locks.stl          models/lucy-locks.scad
 echo "pcb"
 openscad -o stl/pcb.stl                 models/pcb.scad
 echo "power-button"
