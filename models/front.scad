@@ -26,6 +26,8 @@ HCOL = 2.9; // Height of the screw column.
 RCOL = 2 / 2; // Radius of the screw holes in the column.
 MBCOL = 4.5 + 1; // Margin of the bottom screw holes.
 MTCOL = 12.5 + 1; // Margin of the bottom screw holes.
+RNUT = 4.37 / 2 + .1;
+HNUT = 1.53;
 
 // The box with rounded corners representing the whole device outline.
 //
@@ -208,11 +210,13 @@ module front_columns() {
   // bottom-left screw column
   color("cyan")
     translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
-      screw_column_bottom();
+      rotate(-45)
+        screw_column_bottom();
   // bottom-right screw column
   color("cyan")
     translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
-      screw_column_bottom();
+      rotate(45)
+        screw_column_bottom();
   // top-left screw column
   translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
     color("cyan")
@@ -230,39 +234,16 @@ module front_columns() {
 // for a screw or bolt. Has a space for a nut. at the bottom.
 // The height of the column control the distance between
 // the front panel and PCB.
-module screw_column() {
-  difference() {
-    cylinder(h=HCOL - 2, r=RCOL + WALLS);
-    translate([0, 0, -.1])
-      cylinder(h=HCOL + .2, r=RCOL);
-  }
-
-  RNUT = 1;
-  translate([0, 0, HCOL - 2.7])
-    difference() {
-      cylinder(h=2.7 + .00001, r=RCOL + WALLS + RNUT);
-      translate([-5, 0, -1])
-        cube([10, (RCOL + WALLS + RNUT) * 2, 4]);
-      translate([0, 0, -.1])
-        cylinder(h=10, r=RCOL + RNUT);
-    }
-}
-
-// A little column with a hollow shaft in the middle
-// for a screw or bolt. Has a space for a nut. at the bottom.
-// The height of the column control the distance between
-// the front panel and PCB.
 module screw_column_bottom() {
   difference() {
-    cylinder(h=HCOL - 2, r=RCOL + WALLS);
+    cylinder(h=HCOL - HNUT, r=RCOL + 3);
     translate([0, 0, -.1])
       cylinder(h=HCOL + .2, r=RCOL);
   }
 
-  RNUT = 1;
-  translate([0, 0, HCOL - 2.7])
+  translate([0, 0, HCOL - HNUT])
     difference() {
-      cylinder(h=2.7 + .00001, r=RCOL + WALLS + RNUT);
+      cylinder(h=HNUT + .00001, r=RCOL + WALLS + RNUT);
       translate([-5, 0, -1])
         cube([10, (RCOL + WALLS + RNUT) * 2, 4]);
       translate([0, 0, -.1])
@@ -271,8 +252,6 @@ module screw_column_bottom() {
 }
 
 module screw_column_top() {
-  RNUT = 4.37 / 2 + .1;
-  HNUT = 1.53;
   difference() {
     union() {
       cylinder(h=HCOL, r=RCOL + 2);
