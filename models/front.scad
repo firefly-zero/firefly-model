@@ -62,6 +62,7 @@ module front() {
       back_panel_cut();
     }
 
+  front_columns();
   color("blue")
     front_supports();
 
@@ -74,8 +75,6 @@ module front() {
 }
 
 module front_supports() {
-  front_columns();
-
   translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
     pad_support();
   translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
@@ -207,22 +206,27 @@ module back_panel_half_cut() {
 
 module front_columns() {
   // bottom-left screw column
-  translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
-    screw_column();
+  color("cyan")
+    translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
+      screw_column();
   // bottom-right screw column
-  translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
-    screw_column();
+  color("cyan")
+    translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
+      screw_column();
   // top-left screw column
   translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
-    translate([0, 0, HCOL - WALLS])
-      cylinder(h=WALLS, r=RCOL + WALLS + 1);
-    screw_column();
+    color("magenta")
+      screw_column_support();
+    color("cyan")
+      screw_column();
   }
   // top-right screw column
   translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
-    translate([0, 0, HCOL - WALLS])
-      cylinder(h=WALLS, r=RCOL + WALLS + 1);
-    screw_column();
+    color("magenta")
+      rotate(-90)
+        screw_column_support();
+    color("cyan")
+      screw_column();
   }
 }
 
@@ -245,6 +249,19 @@ module screw_column() {
         cube([10, (RCOL + WALLS + RNUT) * 2, 4]);
       translate([0, 0, -.1])
         cylinder(h=10, r=RCOL + RNUT);
+    }
+}
+
+module screw_column_support() {
+  translate([0, 0, HCOL - WALLS])
+    hull() {
+      cylinder(h=WALLS, r=RCOL + WALLS + 1);
+      translate([0, 3, 0])
+        rotate(30)
+          cube([(RCOL + WALLS + 1) * 2, 1, WALLS]);
+      translate([-4, 0, 0])
+        rotate(-120)
+          cube([(RCOL + WALLS + 1) * 2, 1, WALLS]);
     }
 }
 
