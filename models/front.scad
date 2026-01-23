@@ -36,10 +36,10 @@ module outline(margin = 0) {
   hull() {
     // top-left corner
     translate([RT, H - RT, 0])
-      cylinder(h=T, r=RT - margin);
+      cylinder(h=T, r=RT - margin, $fa=1);
     // top-right corner
     translate([W - RT, H - RT, 0])
-      cylinder(h=T, r=RT - margin);
+      cylinder(h=T, r=RT - margin, $fa=1);
     // bottom-left corner
     translate([RB, RB, 0])
       cylinder(h=T, r=RB - margin);
@@ -107,10 +107,10 @@ module pad_support() {
 module front_holes() {
   // touchpad hole
   translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS - .1])
-    cylinder(h=WALLS + .2, r=RPAD);
+    cylinder(h=WALLS + .2, r=RPAD, $fa=1);
   // buttons group hole
   translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
-    cylinder(h=WALLS + .2, r=RPAD);
+    cylinder(h=WALLS + .2, r=RPAD, $fa=1);
   // screen hole
   translate([(W - WSCR) / 2, (H - HSCR) / 2, T - WALLS - .1])
     cube([WSCR, HSCR, WALLS + .2]);

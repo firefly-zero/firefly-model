@@ -127,7 +127,7 @@ module back_side_panel() {
       cylinder(h=WALL + EXTRA_T, r=RB);
     translate([RT + ALLOWANCE, H - RT - ALLOWANCE, -EXTRA_T])
       difference() {
-        cylinder(h=WALL + EXTRA_T, r=RT);
+        cylinder(h=WALL + EXTRA_T, r=RT, $fa=1);
         translate([0, -RT, -.1])
           cube([RT + 1, RT * 2, 6]);
       }
