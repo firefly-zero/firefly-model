@@ -67,13 +67,6 @@ module front() {
   front_columns();
   color("blue")
     front_supports();
-
-  color("green") {
-    extra_support();
-    translate([W, 0, 0])
-      mirror([1, 0, 0])
-        extra_support();
-  }
 }
 
 module front_supports() {
