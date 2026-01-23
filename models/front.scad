@@ -27,7 +27,7 @@ RCOL = 2 / 2; // Radius of the screw holes in the column.
 MBCOL = 4.5 + 1; // Margin of the bottom screw holes.
 MTCOL = 12.5 + 1; // Margin of the bottom screw holes.
 RNUT = 4.37 / 2 + .1;
-HNUT = 1.53;
+HNUT = 1.53 + .5;
 
 // The box with rounded corners representing the whole device outline.
 //

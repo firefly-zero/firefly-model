@@ -32,39 +32,8 @@ module back() {
           logo();
         back_screw_holes();
       }
-      back_lucy_locks();
       back_columns();
     }
-}
-
-module back_lucy_locks() {
-  WSCR = 73;
-  translate([(W - WSCR) / 2, 1 + ALLOWANCE, -5.9])
-    mirror([0, 1, 0])
-      back_lucy_lock();
-  translate([(W + WSCR) / 2, 1 + ALLOWANCE, -5.9])
-    mirror([0, 1, 0])
-      mirror([1, 0, 0])
-        back_lucy_lock();
-  translate([0, H - 1, 0]) {
-    translate([(W - WSCR) / 2, -ALLOWANCE, -5.9])
-      back_lucy_lock();
-    translate([(W + WSCR) / 2, -ALLOWANCE, -5.9])
-      mirror([1, 0, 0])
-        back_lucy_lock();
-  }
-}
-
-module back_lucy_lock() {
-  cube([15.9, 1, 10]);
-  translate([0, 0, -4])
-    cube([1, 1, 9]);
-  hull() {
-    translate([0, -2, 1.5])
-      cube([15.9, 3, 10.5]);
-    translate([6, -2, 12])
-      cube([40, 3, .1]);
-  }
 }
 
 module back_screw_holes() {
