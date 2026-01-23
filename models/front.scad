@@ -64,16 +64,26 @@ module front() {
       back_panel_cut();
     }
 
-  front_columns();
-  color("blue")
+  color("blue") {
+    front_columns();
     front_supports();
+  }
 }
 
 module front_supports() {
-  translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
-    pad_support();
-  translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
-    pad_support();
+  difference() {
+    translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
+      pad_support();
+    translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
+      cylinder(h=10, r=RNUT);
+  }
+
+  difference() {
+    translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
+      pad_support();
+    translate([W - MTCOL, H - MTCOL, T - 5])
+      cylinder(h=10, r=RNUT);
+  }
 
   // corners holding the display
   translate([42.7, 1.9, 8.5])
@@ -201,25 +211,21 @@ module back_panel_half_cut() {
 
 module front_columns() {
   // bottom-left screw column
-  color("cyan")
-    translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
-      rotate(-45)
-        screw_column_bottom();
+  translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
+    rotate(-45)
+      screw_column_bottom();
   // bottom-right screw column
-  color("cyan")
-    translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
-      rotate(45)
-        screw_column_bottom();
+  translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
+    rotate(45)
+      screw_column_bottom();
   // top-left screw column
   translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
-    color("cyan")
-      screw_column_top();
+    screw_column_top();
   }
   // top-right screw column
   translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
-    color("cyan")
-      rotate(-90)
-        screw_column_top();
+    rotate(-90)
+      screw_column_top();
   }
 }
 
