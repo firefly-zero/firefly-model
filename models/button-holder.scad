@@ -5,7 +5,7 @@ BR = 9.1 / 2; // Button hole radius.
 T = 1; // Thickness.
 M = 3.7; // Margin between holder boundary and button hole.
 TTUBE = 1; // Thickness of the tube wall.
-HTUBE = 2; // Thickness of the tube wall.
+HTUBE = 1.5; // Height of the tube.
 WRAIL = 1.1; // Width of the rail cutout.
 
 module button_hole() {
