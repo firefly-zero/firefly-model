@@ -131,11 +131,11 @@ module buttons_support() {
     difference() {
       cylinder(h=1, r=RPAD + 3);
       // Cutout for S and N buttons.
-      translate([-6, -32 / 2, -.1])
-        cube([12, 32, 4]);
+      translate([-11.5 / 2, -32 / 2, -.1])
+        cube([11.5, 32, 4]);
       // Cutout for W and E buttons.
-      translate([-32 / 2, -6, -.1])
-        cube([32, 12, 4]);
+      translate([-32 / 2, -11.5 / 2, -.1])
+        cube([32, 11.5, 4]);
       // Cutout for the display.
       translate([-RPAD - 5, -RPAD, -1])
         cube([5, RPAD * 2, 5]);
@@ -177,21 +177,24 @@ module front_holes() {
     rotate(90, [0, 0, 1])
       front_usb();
   // audio 3.5mm jack
-  translate([22.5, WALLS + .1, 4.9])
+  translate([22.5 + 1.5, WALLS + .1, 4.9])
     rotate(90, [1, 0, 0])
-      cylinder(h=WALLS + .2, r=3.7 / 2);
+      cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
   // SD card port
-  translate([140, -.1, 4.9])
-    cube([13, 2, 1.5]);
+  AHSD = 3;
+  AWSD = 2;
+  translate([140 - AWSD, -.1, 4.9 - AHSD])
+    cube([13 + AWSD * 2, 2, 1.5 + AHSD * 2]);
 }
 
 // A hole for a USB-C port.
 module front_usb() {
+  allowance = 2.5;
   rotate(90, [1, 0, 0])
     hull() {
-      cylinder(h=2, r=1.5);
+      cylinder(h=2, r=1.5 + allowance);
       translate([9 - 2 * 1.5, 0, 0])
-        cylinder(h=2, r=1.5);
+        cylinder(h=2, r=1.5 + allowance);
     }
 }
 
