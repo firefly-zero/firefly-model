@@ -55,9 +55,12 @@ module lucy_locks() {
 module lucy_lock() {
   difference() {
     union() {
+      // horizontal rail
       cube([15.9, 1, 10]);
+      // vertical rail (whisker)
       translate([0, 0, -4])
-        cube([1, 1, 9]);
+        cube([10, 1, 9]);
+      // the base
       hull() {
         translate([0, -2, 1.5])
           cube([15.9, 3, 10.5]);

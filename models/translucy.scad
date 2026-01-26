@@ -1,7 +1,7 @@
 WSCR = 73 - .2; // Width of the display's visible part.
 MDISP = 3; // Width of the display's margin.
 H = 6; // Height of the panel.
-TFINGER = 2.1; // Depth of the groove that locks the panel in place.
+TFINGER = 5; // Depth of the groove that locks the panel in place.
 WALL = 1; // Thickness of the walls.
 
 module translucy() {
