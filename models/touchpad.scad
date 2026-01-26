@@ -16,6 +16,9 @@ module touchpad() {
   color("white")
     translate([-9.2 / 2, R - 8, -4.4])
       cube([9.2, 3.6, 4.4]);
+  color("gray")
+    translate([-10 / 2, 6 - R, -1.6])
+      cube([10, 8, 1.601]);
 }
 
 touchpad();

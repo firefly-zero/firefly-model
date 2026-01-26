@@ -103,11 +103,22 @@ module front_supports() {
 
 // The bedding for glue'ing in touchpad.
 module pad_support() {
-  translate([0, 0, -1])
+  translate([0, 0, -2.4])
     difference() {
-      cylinder(h=1, r=RPAD + 1);
-      translate([0, 0, -.1])
-        cylinder(h=1.2, r=RPAD - 1.5);
+      cylinder(h=2.4, r=RPAD + 2);
+      // Cutout for the pad connector.
+      translate([-13.5, -11 / 2, -.1])
+        cube([5, 11, 4]);
+      // Cutout for C16 and C17 transistors.
+      translate([-12, -25 / 2, 1])
+        cube([5, 5, 4]);
+      // Cutout for the pad's chip
+      intersection() {
+        translate([-2, -RPAD, .81])
+          cube([RPAD + 2, RPAD * 2, 1.6]);
+        translate([0, 0, -.1])
+          cylinder(h=4.2, r=RPAD - 1.5);
+      }
     }
 }
 

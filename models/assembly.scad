@@ -20,12 +20,12 @@ color("purple")
     rotate(180, [0, 1, 0])
       back();
 
-// translate([2, 2, 6.6])
-//   pcb();
+translate([2, 2, 6.6])
+  pcb();
 
-translate([-68.61, 127.4, 6.5])
-  color("green")
-    import("./pcb.stl");
+// translate([-68.61, 127.4, 6.5])
+//   color("green")
+//     import("./pcb.stl");
 
 translate([23.8, 37.2, 11])
   mirror([1, 1, 0])
