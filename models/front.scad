@@ -72,7 +72,7 @@ module front() {
 
 module front_supports() {
   difference() {
-    translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
+    translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS + .001])
       pad_support();
     // Cut hole for the nut.
     translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
@@ -80,7 +80,7 @@ module front_supports() {
   }
 
   difference() {
-    translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
+    translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS + .001])
       buttons_support();
     // Cut hole for the nut.
     translate([W - MTCOL, H - MTCOL, T - 5])
@@ -107,11 +107,14 @@ module pad_support() {
     difference() {
       cylinder(h=2.4, r=RPAD + 2);
       // Cutout for the pad connector.
-      translate([-13.5, -11 / 2, -.1])
+      translate([-15, -11 / 2, -.1])
         cube([5, 11, 4]);
       // Cutout for C16 and C17 transistors.
-      translate([-12, -25 / 2, 1])
-        cube([5, 5, 4]);
+      intersection() {
+        translate([-15, -25 / 2 - 2, 1])
+          cube([8, 9.5, 4]);
+        cylinder(h=5, r=RPAD - 1.5);
+      }
       // Cutout for the pad's chip
       intersection() {
         translate([-2, -RPAD, .81])
@@ -134,8 +137,8 @@ module buttons_support() {
       translate([-32 / 2, -6, -.1])
         cube([32, 12, 4]);
       // Cutout for the display.
-      translate([-RPAD - 5, -RPAD, -.1])
-        cube([5, RPAD * 2, 4]);
+      translate([-RPAD - 5, -RPAD, -1])
+        cube([5, RPAD * 2, 5]);
     }
 }
 

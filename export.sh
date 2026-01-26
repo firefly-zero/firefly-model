@@ -9,6 +9,8 @@ echo "button-holder"
 openscad -o stl/button-holder.stl       models/button-holder.scad
 echo "button"
 openscad -o stl/button.stl              models/button.scad
+echo "button-v3"
+openscad -o stl/button-v3.stl           models/button-v3.scad
 echo "display"
 openscad -o stl/display.stl             models/display.scad
 echo "front"
