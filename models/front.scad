@@ -74,13 +74,15 @@ module front_supports() {
   difference() {
     translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS])
       pad_support();
+    // Cut hole for the nut.
     translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
       cylinder(h=10, r=RNUT);
   }
 
   difference() {
     translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS - .1])
-      pad_support();
+      buttons_support();
+    // Cut hole for the nut.
     translate([W - MTCOL, H - MTCOL, T - 5])
       cylinder(h=10, r=RNUT);
   }
@@ -99,13 +101,30 @@ module front_supports() {
       display_corner();
 }
 
-// The bedding for glue'ing in touchpad or buttons holder.
+// The bedding for glue'ing in touchpad.
 module pad_support() {
   translate([0, 0, -1])
     difference() {
       cylinder(h=1, r=RPAD + 1);
       translate([0, 0, -.1])
         cylinder(h=1.2, r=RPAD - 1.5);
+    }
+}
+
+// The bedding for glue'ing in buttons holder.
+module buttons_support() {
+  translate([0, 0, -1])
+    difference() {
+      cylinder(h=1, r=RPAD + 3);
+      // Cutout for S and N buttons.
+      translate([-6, -32 / 2, -.1])
+        cube([12, 32, 4]);
+      // Cutout for W and E buttons.
+      translate([-32 / 2, -6, -.1])
+        cube([32, 12, 4]);
+      // Cutout for the display.
+      translate([-RPAD - 5, -RPAD, -.1])
+        cube([5, RPAD * 2, 4]);
     }
 }
 
