@@ -103,21 +103,23 @@ module front_supports() {
 
 // The bedding for glue'ing in touchpad.
 module pad_support() {
-  PH = 2.4 + .5;
+  PH = 2.4 + 1.5;
   translate([0, 0, -PH], $fa=1) {
+    translate([0, 0, 1])
+      difference() {
+        cylinder(h=PH - 1 + .1, r=RPAD + 2);
+        translate([0, 0, -0.01])
+          cylinder(h=4.5, r=RPAD + .001);
+      }
     difference() {
-      cylinder(h=PH + .1, r=RPAD + 2);
-      translate([0, 0, -0.01])
-        cylinder(h=4.5, r=RPAD + .001);
-    }
-    difference() {
-      cylinder(h=2.4, r=RPAD + 2);
+      translate([0, 0, 1])
+        cylinder(h=1.4, r=RPAD + 2);
       // Cutout for the pad connector.
       translate([-15, -11 / 2, -.1])
         cube([5, 11, 4]);
       // Cutout for C16 and C17 transistors.
       intersection() {
-        translate([-15, -25 / 2 - 2, 1])
+        translate([-15, -25 / 2 - 2, 1 - .1])
           cube([8, 9.5, 4]);
         cylinder(h=5, r=RPAD - 1.5);
       }
@@ -260,15 +262,10 @@ module front_columns() {
   translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
     rotate(45)
       screw_column_bottom();
-  // top-left screw column
-  translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
-    screw_column_top();
-  }
   // top-right screw column
-  translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001]) {
+  translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
     rotate(-90)
       screw_column_top();
-  }
 }
 
 // A little column with a hollow shaft in the middle
