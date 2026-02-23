@@ -161,15 +161,9 @@ module front_holes() {
   // reset button hole
   translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RRST);
-  // LEDs bottom hole
-  insert_size = (H - HSCR) / 2;
-  translate([(W - WSCR) / 2, -.1, T - insert_size - .1])
-    cube([WSCR, insert_size + .2, insert_size + .2]);
-  // LEDs top hole
-  translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
-    cube([WSCR, insert_size + .2, insert_size + .2]);
 
   // down USB port
+  // translate([W / 2, H + .1, 4.9])
   translate([9.9, WALLS + .1, 4.9])
     front_usb();
   // temp side USB port
@@ -181,9 +175,11 @@ module front_holes() {
     rotate(90, [1, 0, 0])
       cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
   // SD card port
-  AHSD = 3;
-  AWSD = 2;
-  translate([140 - AWSD, -.1, 4.9 - AHSD])
+  AHSD = 2;
+  AWSD = 1;
+  AXSD = 1;
+  AZSD = 1;
+  translate([140 - AWSD + AXSD, -.1, 4.9 - AHSD - AZSD])
     cube([13 + AWSD * 2, 2, 1.5 + AHSD * 2]);
 }
 

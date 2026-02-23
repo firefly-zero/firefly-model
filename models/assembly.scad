@@ -8,12 +8,8 @@ use <pcb.scad>;
 use <simplified-button.scad>;
 use <speaker.scad>;
 use <touchpad.scad>;
-use <translucy.scad>;
-use <lucy-locks.scad>;
 
 front();
-
-lucy_locks();
 
 color("purple")
   translate([166, 1, 1])
@@ -79,10 +75,3 @@ translate([44, 3, 8.5])
 
 translate([52.5, 10, -0.7])
   battery();
-
-translate([47, 0, 6])
-  translucy();
-
-translate([47, 61, 6])
-  mirror([0, 1, 0])
-    translucy();
