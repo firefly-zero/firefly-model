@@ -68,6 +68,8 @@ module front() {
     front_columns();
     front_supports();
   }
+  color("cyan")
+    front_back_supports();
 }
 
 module front_supports() {
@@ -309,6 +311,19 @@ module screw_column_support() {
         rotate(-120)
           cube([(RCOL + WALLS + 1) * 2, 1, WALLS]);
     }
+}
+
+module front_back_supports() {
+  SW = 5;
+  translate([(W - WBAT) / 2 + 5, 0.9, -TBAT + WALLS])
+    cube([SW, 1.1, 3]);
+  translate([(W + WBAT) / 2 - SW - 5, 0.9, -TBAT + WALLS])
+    cube([SW, 1.1, 3]);
+
+  translate([(W - WBAT) / 2 + 5, H - WALLS - 1, -TBAT + WALLS])
+    cube([SW, 1.1, 3]);
+  translate([(W + WBAT) / 2 - SW - 5, H - WALLS - 1, -TBAT + WALLS])
+    cube([SW, 1.1, 3]);
 }
 
 front();
