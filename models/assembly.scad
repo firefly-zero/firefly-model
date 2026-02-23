@@ -23,7 +23,7 @@ translate([2, 2, 6.6])
 //   color("green")
 //     import("./pcb.stl");
 
-translate([23.8, 37.2, 11])
+translate([23.8, 37.2, 10.5])
   mirror([1, 1, 0])
     touchpad();
 

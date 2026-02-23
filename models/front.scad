@@ -134,9 +134,12 @@ module pad_support() {
 
 // The bedding for glue'ing in buttons holder.
 module buttons_support() {
-  translate([0, 0, -1])
+  PH = 1.5;
+  translate([0, 0, -PH])
     difference() {
-      cylinder(h=1, r=RPAD + 3);
+      cylinder(h=PH + .1, r=RPAD + 3);
+      translate([0, 0, WALLS])
+        cylinder(h=WALLS, r=RPAD + .001, $fa=1);
       // Cutout for S and N buttons.
       translate([-11.5 / 2, -32 / 2, -.1])
         cube([11.5, 32, 4]);
