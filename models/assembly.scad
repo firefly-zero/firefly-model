@@ -2,6 +2,7 @@ use <back.scad>;
 use <battery.scad>;
 use <button-holder.scad>;
 use <button.scad>;
+use <corner.scad>;
 use <display.scad>;
 use <front.scad>;
 use <pcb.scad>;
@@ -75,3 +76,10 @@ translate([44, 3, 8.5])
 
 translate([52.5, 10, -0.7])
   battery();
+
+translate([47, 0, 6])
+  corner();
+
+translate([47, 61, 6])
+  mirror([0, 1, 0])
+    corner();

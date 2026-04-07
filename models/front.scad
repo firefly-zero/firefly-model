@@ -175,21 +175,28 @@ module front_holes() {
   // reset button hole
   translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RRST);
+  // LEDs bottom hole
+  insert_size = (H - HSCR) / 2;
+  translate([(W - WSCR) / 2, -.1, T - insert_size - .1])
+    cube([WSCR, insert_size + .2, insert_size + .2]);
+  // LEDs top hole
+  translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
+    cube([WSCR, insert_size + .2, insert_size + .2]);
 
   // down USB port
   // translate([W / 2, H + .1, 4.9])
   translate([9.9, WALLS + .1, 4.9])
     front_usb();
   // temp side USB port
-  translate([-.1, 21.4, 4.9])
+  *translate([-.1, 21.4, 4.9])
     rotate(90, [0, 0, 1])
       front_usb();
   // audio 3.5mm jack
-  translate([22.5 + 1.5, WALLS + .1, 4.9])
+  *translate([22.5 + 1.5, WALLS + .1, 4.9])
     rotate(90, [1, 0, 0])
       cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
   // SD card port
-  AHSD = 2;
+  AHSD = 0; // prototype: 2;
   AWSD = 1;
   AXSD = 1;
   AZSD = 1;
@@ -199,7 +206,7 @@ module front_holes() {
 
 // A hole for a USB-C port.
 module front_usb() {
-  allowance = 2.5;
+  allowance = 0; // prototype: 2.5;
   rotate(90, [1, 0, 0])
     hull() {
       cylinder(h=2, r=1.5 + allowance);
