@@ -1,7 +1,6 @@
 use <back.scad>;
 use <battery.scad>;
 use <button-holder.scad>;
-use <button.scad>;
 use <corner-top.scad>;
 use <corner-bottom.scad>;
 use <display.scad>;
@@ -38,38 +37,20 @@ translate([143.2, 37.2, 12])
 
 color("#333c57") {
   // W
-  // translate([134, 37.2, 11]) {
-  //   button();
-  //   power_button();
-  // }
   translate([134, 37.2, 11 + .5])
     simplified_button();
   // E
-  // translate([152.5, 37.2, 11]) {
-  //   button();
-  //   power_button();
-  // }
   translate([152.5, 37.2, 11 + .5])
     simplified_button();
   // S
-  // translate([143.2, 28, 11]) {
-  //   button();
-  //   power_button();
-  // }
   translate([143.2, 28, 11 + .5])
     simplified_button();
   // N
-  // translate([143.2, 46.5, 11]) {
-  //   button();
-  //   power_button();
-  // }
   translate([143.2, 46.5, 11 + .5])
     simplified_button();
 }
 
 // menu
-// translate([135.1, 10.5, 11])
-//   power_button();
 translate([133.4, 11.6, 11 + .5])
   simplified_button();
 
