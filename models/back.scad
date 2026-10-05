@@ -16,8 +16,8 @@ TLOGO = 0.4; // How deep the logo should be etched.
 RB = 4.5 - WALL - ALLOWANCE; // Radius of the bottom corners.
 RT = 23.5 - WALL - ALLOWANCE; // Radius of the top corners.
 RSCREW = 3 / 2; // Radius of the screw holes.
-MBSCREW = 4.5; // Margin of the bottom screw holes.
-MTSCREW = 12.5; // Margin of the bottom screw holes.
+MBSCREW = 4.5 + 2.4; // Margin of the bottom screw holes.
+MTSCREW = 12.5 + .4; // Margin of the bottom screw holes.
 HCOL = 5.5;
 
 WMID = W - (WFLAT + WBEND) * 2; // Width of the middle panel.

@@ -24,8 +24,8 @@ RRST = 1.2; // Reset button radius.
 
 HCOL = 2.9; // Height of the screw column.
 RCOL = 2 / 2; // Radius of the screw holes in the column.
-MBCOL = 4.5 + 1; // Margin of the bottom screw holes.
-MTCOL = 12.5 + 1; // Margin of the bottom screw holes.
+MBCOL = 4.5 + 3.4; // Margin of the bottom screw holes.
+MTCOL = 12.5 + 1.4; // Margin of the bottom screw holes.
 RNUT = 4.37 / 2 + .1;
 HNUT = 1.53 + .5;
 
@@ -184,9 +184,12 @@ module front_holes() {
     cube([WSCR, insert_size + .2, insert_size + .2]);
 
   // top USB port
-  // translate([W / 2, H + .1, 4.9])
   translate([W / 2 - 3, H + .01, 4.9])
     front_usb();
+  // top tmp power button
+  translate([W / 2 - 22, H + .01, 4.9])
+    rotate(90, [1, 0, 0])
+      cylinder(h=WALLS + .2, r=4);
   // temp side USB port
   translate([-.1, 21.4, 4.9])
     rotate(90, [0, 0, 1])

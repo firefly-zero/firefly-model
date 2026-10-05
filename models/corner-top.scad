@@ -20,6 +20,8 @@ module corner_top() {
       }
       translate([(WSCR - 28) / 2, -.01, -1])
         cube([21, 10, 3]);
+      translate([(WSCR - 28) / 2 + 32, -.01, -1])
+        cube([8, 10, 3]);
     }
 }
 

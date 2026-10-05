@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  export:
+    sources:
+      - models/*.scad
+    cmds:
+      - rm -r stl
+      - mkdir stl
+      - for: sources
+        cmd: >
+          echo "exporting {{.ITEM}}..." &&
+          openscad
+          -o stl/$(basename --suffix=.scad {{.ITEM}}).stl
+          {{.ITEM}}
+
+  default:
+    cmds:
+      - task: export
