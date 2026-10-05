@@ -27,7 +27,7 @@ module speaker() {
       for (x = [0:5], y = [0:5])
         if (!(x == 5 || x == 0) || !(y == 5 || y == 0))
           translate([-R + 2 + x, -R + 2 + y, -.01])
-            cylinder(h=20, r=.3);
+            cylinder(h=20, r=.4);
     }
   }
 }

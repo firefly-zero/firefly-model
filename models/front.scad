@@ -45,7 +45,7 @@ module outline(margin = 0) {
     // bottom-left corner
     translate([RB, RB, 0])
       cylinder(h=T, r=RB - margin);
-    // bottom-right corner
+    // bottom-rig#ht corner
     translate([W - RB, RB, 0])
       cylinder(h=T, r=RB - margin);
     // battery
@@ -167,13 +167,13 @@ module front_holes() {
   translate([(W - WSCR) / 2, (H - HSCR) / 2, T - WALLS - .1])
     cube([WSCR, HSCR, WALLS + .2]);
   // speaker hole
-  translate([MPAD + RPAD * 2 - RSPK, (H - HSCR) / 2 + RSPK, T - WALLS - .1])
+  translate([MPAD + RPAD * 2 - RSPK - 3, (H - HSCR) / 2 + RSPK + 1, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RSPK);
   // power button hole
-  translate([W - MPAD - RPAD * 2 + RPWR + 5, (H - HSCR) / 2 + RPWR, T - WALLS - .1])
+  translate([W - MPAD - RPAD * 2 + RPWR + 3.3, (H - HSCR) / 2 + RPWR + 1, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RPWR);
   // reset button hole
-  translate([MPAD + RPAD * 2 - RRST, H - MPAD - RRST, T - WALLS - .1])
+  translate([MPAD + RPAD * 2 - RRST + .2, H - MPAD - RRST + 1.5, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RRST);
   // LEDs bottom hole
   insert_size = (H - HSCR) / 2;
@@ -183,30 +183,30 @@ module front_holes() {
   translate([(W - WSCR) / 2, H - insert_size - .1, T - insert_size - .1])
     cube([WSCR, insert_size + .2, insert_size + .2]);
 
-  // down USB port
+  // top USB port
   // translate([W / 2, H + .1, 4.9])
-  translate([9.9, WALLS + .1, 4.9])
+  translate([W / 2 - 3, H + .01, 4.9])
     front_usb();
   // temp side USB port
-  *translate([-.1, 21.4, 4.9])
+  translate([-.1, 21.4, 4.9])
     rotate(90, [0, 0, 1])
       front_usb();
   // audio 3.5mm jack
-  *translate([22.5 + 1.5, WALLS + .1, 4.9])
+  translate([W / 2 + 1.5, WALLS + .1, 4.9])
     rotate(90, [1, 0, 0])
       cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
   // SD card port
-  AHSD = 0; // prototype: 2;
-  AWSD = 1;
-  AXSD = 1;
-  AZSD = 1;
-  translate([140 - AWSD + AXSD, -.1, 4.9 - AHSD - AZSD])
-    cube([13 + AWSD * 2, 2, 1.5 + AHSD * 2]);
+  translate([44, -.1, 4.9 - 2.3])
+    cube([13, 2, 1.5 + 4]);
+  // power button
+  translate([94, H + .01, 4.9])
+    rotate(90, [1, 0, 0])
+      cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
 }
 
 // A hole for a USB-C port.
 module front_usb() {
-  allowance = 0; // prototype: 2.5;
+  allowance = 2.5;
   rotate(90, [1, 0, 0])
     hull() {
       cylinder(h=2, r=1.5 + allowance);
