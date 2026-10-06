@@ -9,6 +9,8 @@ tasks:
   export:
     sources:
       - models/*.scad
+      - exclude: models/assembly.scad
+      - exclude: models/params.scad
     cmds:
       - rm -r stl
       - mkdir stl

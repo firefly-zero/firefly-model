@@ -10,7 +10,7 @@ use <simplified-button.scad>;
 use <speaker.scad>;
 use <touchpad.scad>;
 
-front();
+// front();
 
 // color("purple")
 //   translate([166, 1, 1])
@@ -37,21 +37,21 @@ translate([143.2, 37.2, 12])
 
 color("#333c57") {
   // W
-  translate([134, 37.2, 11 + .5])
+  translate([134, 37.2, 8.8])
     simplified_button();
   // E
-  translate([152.5, 37.2, 11 + .5])
+  translate([152.5, 37.2, 8.8])
     simplified_button();
   // S
-  translate([143.2, 28, 11 + .5])
+  translate([143.2, 28, 8.8])
     simplified_button();
   // N
-  translate([143.2, 46.5, 11 + .5])
+  translate([143.2, 46.5, 8.8])
     simplified_button();
 }
 
 // menu
-translate([133.4, 11.6, 11 + .5])
+translate([133.4, 11.6, 8.8])
   simplified_button();
 
 translate([44, 3, 8.5])
