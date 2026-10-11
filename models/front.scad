@@ -189,7 +189,7 @@ module front_holes() {
   // top tmp power button
   translate([W / 2 - 22, H + .01, 4.9])
     rotate(90, [1, 0, 0])
-      cylinder(h=WALLS + .2, r=4);
+      cylinder(h=WALLS + .2, r=3 / 2);
   // temp side USB port
   translate([-.1, 21.4, 4.9])
     rotate(90, [0, 0, 1])
@@ -197,19 +197,15 @@ module front_holes() {
   // audio 3.5mm jack
   translate([W / 2 + 1.5, WALLS + .1, 4.9])
     rotate(90, [1, 0, 0])
-      cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
+      cylinder(h=WALLS + .2, r=3.7 / 2 + .4);
   // SD card port
-  translate([44, -.1, 4.9 - 2.3])
-    cube([13, 2, 1.5 + 4]);
-  // power button
-  translate([94, H + .01, 4.9])
-    rotate(90, [1, 0, 0])
-      cylinder(h=WALLS + .2, r=3.7 / 2 + 2);
+  translate([44, -.1, 4.9 - 1])
+    cube([13, 2, 1.5 + 1.6]);
 }
 
 // A hole for a USB-C port.
 module front_usb() {
-  allowance = 2.5;
+  allowance = .2;
   rotate(90, [1, 0, 0])
     hull() {
       cylinder(h=2, r=1.5 + allowance);

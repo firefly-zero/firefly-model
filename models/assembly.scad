@@ -10,7 +10,7 @@ use <simplified-button.scad>;
 use <speaker.scad>;
 use <touchpad.scad>;
 
-// front();
+front();
 
 // color("purple")
 //   translate([166, 1, 1])
