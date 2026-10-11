@@ -1,11 +1,12 @@
 $fs = 0.4;
 
 R = 8.9 / 2; // Button radius.
-H = 4.5; // Button height.
+H = 4.7; // Button height.
 HCOL = 0.6; // Height of the button's black shaft.
 RCOL = 4 / 2; // Radius of the button's black shaft.
 RSPH = 10;
 WRAIL = 1;
+HRAIL = 1.3;
 
 module simplified_button() {
   color("#b13e53")
@@ -13,10 +14,10 @@ module simplified_button() {
       union() {
         translate([0, 0, HCOL]) {
           translate([-WRAIL / 2, -R - 1, 0])
-            cube([WRAIL, 2 * R + 2, 1.5]);
+            cube([WRAIL, 2 * R + 2, HRAIL]);
           rotate([0, 0, 90])
             translate([-WRAIL / 2, -R - 1, 0])
-              cube([WRAIL, 2 * R + 2, 1.5]);
+              cube([WRAIL, 2 * R + 2, HRAIL]);
           cylinder(h=H, r=R);
         }
         cylinder(h=2, r=RCOL);

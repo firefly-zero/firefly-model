@@ -8,26 +8,25 @@ TBASE = 1;
 WBASE = 1;
 EXTRA = 1.1; // Extra height. Should be adjusted if RSPH changes.
 
-T = WALL + TBASE;
+T = TBASE;
 
 module speaker() {
   color("#b13e53") {
     difference() {
-      union() {
+      translate([0, 0, 1]) {
         cylinder(h=T, r=R);
         intersection() {
           cylinder(h=20, r=R);
           translate([0, 0, T + EXTRA - RSPH])
             sphere(r=RSPH);
         }
-        cylinder(h=TBASE, r=R + WBASE);
       }
       translate([0, 0, -.01])
         cylinder(h=TBASE + .01, r=R - 1);
-      for (x = [0:5], y = [0:5])
-        if (!(x == 5 || x == 0) || !(y == 5 || y == 0))
-          translate([-R + 2 + x, -R + 2 + y, -.01])
-            cylinder(h=20, r=.4);
+      for (x = [0:3], y = [0:3])
+        if (!(x == 3 || x == 0) || !(y == 3 || y == 0))
+          translate([-R + 1.6 + x * 1.9, -R + 1.6 + y * 1.9, -.01])
+            cylinder(h=20, r=.8);
     }
   }
 }

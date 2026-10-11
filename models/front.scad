@@ -81,6 +81,9 @@ module front_supports() {
       cylinder(h=10, r=RCOL, $fs=.2);
   }
 
+  translate([MPAD + RPAD * 2 - RSPK - 3, (H - HSCR) / 2 + RSPK + 1, T - WALLS - .1])
+    speaker_support();
+
   difference() {
     translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS + .001])
       buttons_support();
@@ -153,6 +156,18 @@ module buttons_support() {
       // Cutout for the display.
       translate([-RPAD - 5, -RPAD, -1])
         cube([5, RPAD * 2, 5]);
+    }
+}
+
+module speaker_support() {
+  PH = 1.5;
+  translate([0, 0, -PH])
+    difference() {
+      cylinder(h=PH + .1, r=RSPK + 1);
+      translate([0, 0, WALLS])
+        cylinder(h=WALLS, r=RSPK + .001, $fa=1);
+      translate([0, 0, -1])
+        cylinder(h=10, r=RSPK - 1, $fa=1);
     }
 }
 
