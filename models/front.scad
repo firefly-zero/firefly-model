@@ -84,6 +84,9 @@ module front_supports() {
   translate([MPAD + RPAD * 2 - RSPK - 3, (H - HSCR) / 2 + RSPK + 1, T - WALLS - .1])
     speaker_support();
 
+  translate([W - MPAD - RPAD * 2 + RPWR + 3.3, (H - HSCR) / 2 + RPWR + 1, T - WALLS * 2 - .6 - .1])
+    menu_rails();
+
   difference() {
     translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS + .001])
       buttons_support();
@@ -171,6 +174,17 @@ module speaker_support() {
     }
 }
 
+module menu_rails() {
+  difference() {
+    cylinder(h=WALLS + .6, r=RPWR + WALLS + .04);
+    translate([0, 0, -1])
+      cylinder(h=20, r=RPWR + .04);
+    cube([1.1, 20, 6], center=true);
+    rotate([0, 0, 90])
+      cube([1.1, 20, 6], center=true);
+  }
+}
+
 module front_holes() {
   // touchpad hole
   translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS - .1])
@@ -184,7 +198,7 @@ module front_holes() {
   // speaker hole
   translate([MPAD + RPAD * 2 - RSPK - 3, (H - HSCR) / 2 + RSPK + 1, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RSPK);
-  // power button hole
+  // menu button hole
   translate([W - MPAD - RPAD * 2 + RPWR + 3.3, (H - HSCR) / 2 + RPWR + 1, T - WALLS - .1])
     cylinder(h=WALLS + .2, r=RPWR);
   // reset button hole

@@ -6,7 +6,7 @@ HCOL = 0.6; // Height of the button's black shaft.
 RCOL = 4 / 2; // Radius of the button's black shaft.
 RSPH = 10;
 WRAIL = 1;
-HRAIL = 1.3;
+HRAIL = 1;
 
 module simplified_button() {
   color("#b13e53")
