@@ -12,10 +12,10 @@ use <touchpad.scad>;
 
 front();
 
-// color("purple")
-//   translate([166, 1, 1])
-//     rotate(180, [0, 1, 0])
-//       back();
+color("purple")
+  translate([166, 1, 1])
+    rotate(180, [0, 1, 0])
+      back();
 
 // translate([2, 2, 6.6])
 //   pcb();
@@ -51,7 +51,7 @@ color("#333c57") {
 }
 
 // menu
-translate([133.4, 11.6, 8.8])
+translate([133.4, 11.55, 8.8])
   simplified_button();
 
 translate([44, 3, 8.5])

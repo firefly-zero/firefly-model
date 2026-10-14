@@ -18,8 +18,8 @@ module corner_bottom() {
         translate([0, 1, -.5])
           cube([WSCR, 3, 1]);
       }
-      translate([(WSCR - 2.3) / 2, -.01, -1])
-        cube([5.5, 10, 2]);
+      translate([(WSCR) / 2, -.01, -1])
+        cube([4.5, 10, 2]);
       translate([-.1, -.01, -2])
         cube([10, 10, 3]);
     }

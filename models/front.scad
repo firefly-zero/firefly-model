@@ -77,7 +77,7 @@ module front_supports() {
     translate([RPAD + MPAD, H - RPAD - MPAD, T - WALLS + .001])
       pad_support();
     // Cut hole for the nut.
-    translate([MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
+    translate([MTCOL + .4, H - MTCOL + .4, T - WALLS - HCOL - .001])
       cylinder(h=10, r=RCOL, $fs=.2);
   }
 
@@ -91,7 +91,7 @@ module front_supports() {
     translate([W - RPAD - MPAD, H - RPAD - MPAD, T - WALLS + .001])
       buttons_support();
     // Cut hole for the nut.
-    translate([W - MTCOL, H - MTCOL, T - 5])
+    translate([W - MTCOL - .7, H - MTCOL + .4, T - 5])
       cylinder(h=10, r=RCOL, $fs=.2);
   }
 
@@ -215,16 +215,12 @@ module front_holes() {
   // top USB port
   translate([W / 2 - 3, H + .01, 4.9])
     front_usb();
-  // top tmp power button
-  translate([W / 2 - 22, H + .01, 4.9])
-    rotate(90, [1, 0, 0])
-      cylinder(h=WALLS + .2, r=3 / 2);
   // temp side USB port
   translate([-.1, 21.4, 4.9])
     rotate(90, [0, 0, 1])
       front_usb();
   // audio 3.5mm jack
-  translate([W / 2 + 1.5, WALLS + .1, 4.9])
+  translate([W / 2 + 3.7 / 2 + .4, WALLS + .1, 4.9])
     rotate(90, [1, 0, 0])
       cylinder(h=WALLS + .2, r=3.7 / 2 + .4);
   // SD card port
@@ -292,15 +288,15 @@ module back_panel_half_cut() {
 
 module front_columns() {
   // bottom-left screw column
-  translate([MBCOL, MBCOL, T - WALLS - HCOL - .001])
+  translate([MBCOL, MBCOL + .1, T - WALLS - HCOL - .001])
     rotate(-45)
       screw_column_bottom();
   // bottom-right screw column
-  translate([W - MBCOL, MBCOL, T - WALLS - HCOL - .001])
+  translate([W - MBCOL - .2, MBCOL + .2, T - WALLS - HCOL - .001])
     rotate(45)
       screw_column_bottom();
   // top-right screw column
-  translate([W - MTCOL, H - MTCOL, T - WALLS - HCOL - .001])
+  translate([W - MTCOL - .7, H - MTCOL + .4, T - WALLS - HCOL - .001])
     rotate(-90)
       screw_column_top();
 }
@@ -319,8 +315,6 @@ module screw_column_bottom() {
   translate([0, 0, HCOL - HNUT])
     difference() {
       cylinder(h=HNUT + .00001, r=RCOL + WALLS + RNUT);
-      translate([-5, 0, -1])
-        cube([10, (RCOL + WALLS + RNUT) * 2, 4]);
       translate([0, 0, -.1])
         cylinder(h=10, r=RCOL + RNUT);
     }
